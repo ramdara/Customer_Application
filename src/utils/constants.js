@@ -1,0 +1,1 @@
+export const API_INVOKE_URL = 'https://08mwxk41q4.execute-api.us-east-2.amazonaws.com/Customer_App_Api'; 

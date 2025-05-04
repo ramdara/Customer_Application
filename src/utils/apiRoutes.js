@@ -1,0 +1,11 @@
+export const ENERGY_INPUT = '/energy/input';
+export const GET_PRESIGNED_URL = '/energy/get-presigned-url';
+export const PROCESS_FILE = '/energy/process-file';
+export const ENERGY_HISTORY = '/energy/history';
+export const CURRENT_THRESHOLD = '/energy/current-threshold';
+export const SETUP_SNS = '/energy/setup-sns';
+export const UNSUBSCRIBE_SNS = '/energy/unsubscribe-sns';
+export const ALERTS = '/energy/alerts';
+export const CHECK_SNS_SUBSCRIPTION = '/energy/check-sns-subscription';
+export const ENERGY_SUMMARY = '/energy/summary';
+export const ENERGY_COSTS = '/energy/costs'; 
