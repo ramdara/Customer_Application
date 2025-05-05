@@ -311,7 +311,8 @@ The static files will be in the `build/` directory.
 
 ## Deployment
 
-### AWS Amplify Hosting
+### 1. AWS Amplify Hosting
+
 After `amplify publish`, your app will be served via the Amplify-provided URL. To use a custom domain:
 1. In the Amplify Console, navigate to your app
 2. Select **Domain Management**
@@ -320,33 +321,36 @@ After `amplify publish`, your app will be served via the Amplify-provided URL. T
 ### Alternative Hosting
 You can also deploy the build directory to any static hosting provider (e.g., Netlify, Vercel, GitHub Pages).
 
-### 1. Backend Deployment (Amplify)
-1. Initialize Amplify (if not already):
-   ```bash
-   amplify init
-   ```
-2. Add auth and API (if not configured):
-   ```bash
-   amplify add auth
-   amplify add api
-   ```
-3. Push changes to AWS:
-   ```bash
-   amplify push
-   ```
+### 2. Terraform Deployment
 
-### 2. Frontend Build & Hosting
-1. Install dependencies:
+This project includes Terraform scripts in the `terraform/` directory to provision backend infrastructure.
+
+1. Ensure [Terraform](https://www.terraform.io/downloads.html) v1.x or later is installed.
+2. Configure your AWS credentials (e.g. `aws configure` or environment variables).
+3. Navigate to the Terraform directory:
    ```bash
-   npm install
+   cd terraform
    ```
-2. Build production assets:
+4. (Optional) Review or customize variables in `variables.tf` or create a `terraform.tfvars` file.
+5. Initialize Terraform:
    ```bash
-   npm run build
+   terraform init
    ```
-3. Publish via Amplify Hosting:
+6. Generate and review the execution plan:
    ```bash
-   amplify publish
+   terraform plan
+   ```
+7. Apply the plan to create resources:
+   ```bash
+   terraform apply
+   ```
+8. Once done, note any outputs (API Gateway URL, S3 bucket, etc.):
+   ```bash
+   terraform output
+   ```
+9. To destroy the resources:
+   ```bash
+   terraform destroy
    ```
 
 ### 3. Testing the App
