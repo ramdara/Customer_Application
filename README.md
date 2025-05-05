@@ -190,6 +190,14 @@ Response:
 
 ### POST /energy/process-file
 Process an uploaded CSV file and store its data in DynamoDB.
+
+Sample CSV input format (headers must include `Date` and `Usage`):
+```csv
+Date,Usage
+2023-01-01,8.5
+2023-01-02,9.2
+```
+
 JSON body:
 ```json
 { "customerId": "user@example.com", "fileUrl": "https://bucket/uploads/data.csv" }

@@ -10,6 +10,14 @@ import { API_INVOKE_URL } from '../utils/constants';
 import { ENERGY_INPUT, GET_PRESIGNED_URL, PROCESS_FILE } from '../utils/apiRoutes';
 
 const InputForm = () => {
+  // Calculate sample dates: yesterday and day before yesterday
+  const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
+  const dayBeforeYesterday = new Date(today);
+  dayBeforeYesterday.setDate(dayBeforeYesterday.getDate() - 2);
+  const formatDate = (date) => date.toISOString().split('T')[0];
+
   // State hooks for form input, messages, CSV file, preview data, loading, and upload status
   const [form, setForm] = useState({ date: '', usage: '' });
   const [message, setMessage] = useState('');
@@ -18,7 +26,6 @@ const InputForm = () => {
   const [csvPreviewData, setCsvPreviewData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
-  const [showTip, setShowTip] = useState(false);
   const [recentSubmissions, setRecentSubmissions] = useState([]);
   const { user, authStatus } = useAuthenticator((context) => [context.user, context.authStatus]);
 
@@ -345,7 +352,30 @@ const InputForm = () => {
                   <FaFileCsv className="me-2 text-success" /> 
                   Bulk Upload (CSV)
                 </h3>
-                
+                {/* Expected CSV format guide */}
+                <div className="mb-3">
+                  <label className="form-label">Expected CSV Format:</label>
+                  <div className="table-responsive">
+                    <table className="table table-bordered table-sm">
+                      <thead className="table-light">
+                        <tr>
+                          <th>Date</th>
+                          <th>Usage</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>{formatDate(dayBeforeYesterday)}</td>
+                          <td>25.0</td>
+                        </tr>
+                        <tr>
+                          <td>{formatDate(yesterday)}</td>
+                          <td>26.3</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
                 <div className="mb-3">
                   <label className="form-label">Select CSV File</label>
                   <div className="input-group">

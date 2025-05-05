@@ -14,7 +14,6 @@ const HomeRedirect = () => {
   // State hooks: user display name, usage/cost/threshold datasets, loading/error flags, date range, and summary period
   const [userName, setUserName] = useState(''); // Display name fetched from tokens
   const [historyData, setHistoryData] = useState([]); // Usage history data
-  const [summaryData, setSummaryData] = useState([]); // Summary data (currently unused)
   const [costData, setCostData] = useState([]); // Cost details
   const [thresholdData, setThresholdData] = useState([]); // Current threshold values
 
